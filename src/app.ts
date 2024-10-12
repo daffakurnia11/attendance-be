@@ -3,6 +3,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import passport from 'passport';
+import { errorHandler } from './middlewares/errorHandler';
+import { responseHandler } from './middlewares/responseHandler';
 
 const app = express();
 
@@ -16,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 
 // Import routes here
-// Example: app.use('/auth', authRoutes);
+app.use(responseHandler);
+app.use(errorHandler);
 
 export default app;
