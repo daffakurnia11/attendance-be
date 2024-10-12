@@ -1,7 +1,18 @@
 {
+  "name": "attendance-backend",
+  "version": "1.0.0",
+  "main": "server.ts",
   "scripts": {
     "start": "ts-node src/server.ts",
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "knex": "ts-node ./node_modules/knex/bin/cli.js --knexfile=knexfile.ts",
+    "migrate": "ts-node ./node_modules/knex/bin/cli.js --knexfile=knexfile.ts migrate:latest",
+    "migrate:make": "ts-node ./node_modules/knex/bin/cli.js --knexfile=knexfile.ts migrate:make",
+    "migrate:current": "ts-node ./node_modules/knex/bin/cli.js --knexfile=knexfile.ts migrate:current",
+    "migrate:rollback": "ts-node ./node_modules/knex/bin/cli.js --knexfile=knexfile.ts migrate:rollback",
+    "seed": "ts-node ./node_modules/knex/bin/cli.js --knexfile=knexfile.ts seed:run",
+    "seed:make": "ts-node ./node_modules/knex/bin/cli.js --knexfile=knexfile.ts seed:make",
+    "reset-db": "npm run migrate:rollback --all && npm run migrate && npm run seed && npm start"
   },
   "dependencies": {
     "@types/knex": "^0.16.1",
