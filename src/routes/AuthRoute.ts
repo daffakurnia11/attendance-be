@@ -21,6 +21,13 @@ class AuthRoute {
       handleValidation,
       this.controller.register
     );
+
+    this.router.post(
+      "/login",
+      this.validator.login,
+      handleValidation,
+      this.controller.login
+    );
   }
 }
 

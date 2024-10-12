@@ -16,6 +16,19 @@ class AuthController {
       next(error);
     }
   }
+
+  public async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { access_token, refresh_token } = await AuthService.login(
+        req,
+        res,
+        next
+      );
+      res.success(AUTH_MESSAGE.LOGIN, { token: access_token }, refresh_token);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new AuthController();

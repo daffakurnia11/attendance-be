@@ -19,6 +19,15 @@ class AuthValidator {
         return true;
       }),
   ];
+
+  public login = [
+    body("email").exists().withMessage("Email is required"),
+    body("password")
+      .exists()
+      .withMessage("Password is required")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters long"),
+  ]
 }
 
 export default new AuthValidator();
