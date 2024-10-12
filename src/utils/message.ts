@@ -17,3 +17,13 @@ export const ERROR_MESSAGE = {
   INTERNAL_SERVER_ERROR: "There is something wrong on our side.",
   SERVICE_UNAVAILABLE: "Our service is currently unavailable.",
 };
+
+export const USER_MESSAGE = {
+  GET_USER: "User details retrieved successfully.",
+  EMAIL_EXIST: "This email has already taken.",
+  CREATED: "User created successfully.",
+  INCORRECT_PASSWORD: "Password is incorrect.",
+  UPDATED_PROFILE: "User profile updated successfully.",
+  UPDATED_PASSWORD: "User password updated successfully.",
+  DELETED: "User deleted successfully.",
+};

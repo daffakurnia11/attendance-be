@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import passport from "./config/passport";
 
 import AuthRoute from "./routes/AuthRoute";
+import UserRoute from "./routes/UserRoute";
 import { errorHandler } from "./middlewares/errorHandler";
 import { responseHandler } from "./middlewares/responseHandler";
 
@@ -22,6 +23,7 @@ app.use(passport.initialize());
 // Import routes here
 app.use(responseHandler);
 app.use("/api/auth", AuthRoute.router);
+app.use("/api/user", UserRoute.router);
 app.use(errorHandler);
 
 export default app;
