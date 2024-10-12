@@ -19,12 +19,12 @@ class AuthController {
 
   public async login(req: Request, res: Response, next: NextFunction) {
     try {
-      const { access_token, refresh_token } = await AuthService.login(
+      const { access_token, refresh_token, user } = await AuthService.login(
         req,
         res,
         next
       );
-      res.success(AUTH_MESSAGE.LOGIN, { token: access_token }, refresh_token);
+      res.success(AUTH_MESSAGE.LOGIN, { token: access_token, user }, refresh_token);
     } catch (error) {
       next(error);
     }

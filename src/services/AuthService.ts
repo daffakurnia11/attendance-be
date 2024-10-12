@@ -93,7 +93,7 @@ class AuthService {
             const { access_token, refresh_token } = await this.generateToken(
               user
             );
-            resolve({ access_token, refresh_token });
+            resolve({ access_token, refresh_token, user });
           } catch (error) {
             reject(error);
           }
