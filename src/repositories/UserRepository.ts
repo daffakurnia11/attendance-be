@@ -33,8 +33,14 @@ class UserRepository {
     await knex(this.tableName).insert(user);
   }
 
-  public async update(id: string, user: User): Promise<void> {
+  public async update(id: string, user: User): Promise<User | null> {
     await knex(this.tableName).where({ id }).update(user);
+
+    let data = await this.findByFilter("id", id);
+
+    delete data?.password;
+
+    return data;
   }
 
   public async softDelete(id: string): Promise<void> {

@@ -23,7 +23,7 @@ class UserService {
     return user;
   }
 
-  public async updateProfile(id: string, { name, email }: User): Promise<void> {
+  public async updateProfile(id: string, { name, email }: User): Promise<User | null> {
     const user = await this.findUser("id", id);
 
     if (user.email !== email) {
@@ -33,7 +33,7 @@ class UserService {
       }
     }
 
-    await UserRepository.update(id, { name, email });
+    return await UserRepository.update(id, { name, email });
   }
 
   public async updatePassword(
