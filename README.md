@@ -20,6 +20,7 @@ This project is a **RESTful API** built with **Express.js** to manage user atten
 - [Running the Application](#running-the-application)
   - [Using npm](#using-npm)
   - [Using Docker](#using-docker)
+- [Live Demo](#live-demo)
 - [API Endpoints](#api-endpoints)
 - [Tech Stack](#tech-stack)
 - [Security Considerations](#security-considerations)
@@ -239,6 +240,20 @@ Ensure Docker is installed and running. Use the following commands to build and 
    ```
 
    The server will be available at [http://localhost:8000](http://localhost:8000).
+
+---
+
+## Live Demo
+
+You can access the live API at:
+
+Base URL:
+
+```bash
+https://attendance-be.test.dafkur.com
+```
+
+Use this URL to make requests to the available endpoints described below.
 
 ---
 
