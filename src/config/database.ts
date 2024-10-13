@@ -1,14 +1,14 @@
-import knex from 'knex';
-import { config } from '.';
+import knex from "knex";
+import { config } from ".";
 
 const db = knex({
-  client: 'pg',
+  client: "pg",
   connection: {
     host: config.db.host,
     user: config.db.user,
     password: config.db.password,
     database: config.db.database,
-    port: Number(config.db.port) || 5432
+    port: Number(config.db.port) || 5432,
   },
   pool: {
     min: 2,

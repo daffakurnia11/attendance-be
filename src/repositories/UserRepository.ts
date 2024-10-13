@@ -23,6 +23,7 @@ class UserRepository {
     const user = await this.selectQuery()
       .where({ [key]: value })
       .first();
+
     if (!user) {
       return null;
     }

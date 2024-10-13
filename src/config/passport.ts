@@ -22,15 +22,20 @@ passport.use(
     ) => {
       try {
         const user = await UserRepository.findByFilter("email", email);
-        
-        if (!user) return done(null, false, { message: AUTH_MESSAGE.INVALID_CREDENTIALS });
-        
-        const data = await AuthService.getUserByFilter("id",user.id);
-        
+
+        if (!user)
+          return done(null, false, {
+            message: AUTH_MESSAGE.INVALID_CREDENTIALS,
+          });
+
+        const data = await AuthService.getUserByFilter("id", user.id!);
+
         const isPasswordValid = await bcrypt.compare(password, user.password!);
 
         if (!isPasswordValid)
-          return done(null, false, { message: AUTH_MESSAGE.INVALID_CREDENTIALS });
+          return done(null, false, {
+            message: AUTH_MESSAGE.INVALID_CREDENTIALS,
+          });
 
         delete (user as any).password;
 
@@ -50,7 +55,7 @@ passport.use(
     },
     async (jwtPayload, done) => {
       try {
-        const user = await AuthService.getUserByFilter("id",jwtPayload.id);
+        const user = await AuthService.getUserByFilter("id", jwtPayload.id);
 
         if (user) {
           return done(null, user);

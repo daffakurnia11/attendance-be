@@ -63,6 +63,7 @@ class AuthService {
     });
 
     return {
+      user,
       access_token: accessToken,
       refresh_token: refreshToken,
     };
@@ -87,7 +88,7 @@ class AuthService {
               return reject(new InternalServerError(err.message));
             }
             if (!user) {
-              return reject(new BadRequestError(info.message));
+              return reject(new AuthenticationError(info.message));
             }
 
             const { access_token, refresh_token } = await this.generateToken(

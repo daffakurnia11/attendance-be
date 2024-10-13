@@ -1,21 +1,21 @@
-import dotenv from 'dotenv';
-import Joi from 'joi';
+import dotenv from "dotenv";
+import Joi from "joi";
 
 dotenv.config();
 
 const envSchema = Joi.object({
-  NODE_ENV: Joi.string().valid('development', 'production', 'test').required(),
+  NODE_ENV: Joi.string().valid("development", "production", "test").required(),
   API_PORT: Joi.number().required(),
   DB_HOST: Joi.string().required(),
   DB_USER: Joi.string().required(),
-  DB_PASS: Joi.string().allow(''),
+  DB_PASS: Joi.string().allow(""),
   DB_NAME: Joi.string().required(),
   DB_PORT: Joi.number().required(),
   JWT_ACCESS_SECRET: Joi.string().required(),
   JWT_REFRESH_SECRET: Joi.string().required(),
   JWT_EXPIRES_IN: Joi.string().required(),
   JWT_REFRESH_EXPIRES_IN: Joi.string().required(),
-}).unknown(); 
+}).unknown();
 
 const { error, value: envVars } = envSchema.validate(process.env);
 
