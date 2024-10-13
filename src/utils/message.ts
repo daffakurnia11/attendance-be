@@ -27,3 +27,10 @@ export const USER_MESSAGE = {
   UPDATED_PASSWORD: "User password updated successfully.",
   DELETED: "User deleted successfully.",
 };
+
+export const ATTENDANCE_MESSAGE = {
+  GET_ALL: "Attendances retrieved successfully.",
+  GET_BY_ID: "Attendance retrieved successfully.",
+  NOT_FOUND: "Attendance not found.",
+  CREATED: "Attendance created successfully.",
+}

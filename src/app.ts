@@ -6,6 +6,7 @@ import passport from "./config/passport";
 
 import AuthRoute from "./routes/AuthRoute";
 import UserRoute from "./routes/UserRoute";
+import AttendanceRoute from "./routes/AttendanceRoute";
 import { errorHandler } from "./middlewares/errorHandler";
 import { responseHandler } from "./middlewares/responseHandler";
 
@@ -24,6 +25,7 @@ app.use(passport.initialize());
 app.use(responseHandler);
 app.use("/api/auth", AuthRoute.router);
 app.use("/api/user", UserRoute.router);
+app.use("/api/attendance", AttendanceRoute.router)
 app.use(errorHandler);
 
 export default app;
