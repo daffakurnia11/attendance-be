@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import AttendanceService from "../services/AttendanceService";
 import { ATTENDANCE_MESSAGE } from "../utils/message";
+import { User } from "../models/Users";
 
 class AttendanceController {
   public async findAll(req: Request, res: Response, next: NextFunction) {
@@ -31,7 +32,7 @@ class AttendanceController {
 
   public async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const { id } = await req.user;
+      const { id } = await req.user as User;
       const data = req.body;
       const attendance = await AttendanceService.create({
         user_id: id,
