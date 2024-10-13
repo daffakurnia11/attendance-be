@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: . # Use the project root as the context
+      dockerfile: ./Dockerfile # Explicit path to Dockerfile
+    volumes:
+      - .:/app # Mount the current directory for hot-reloading
+    environment:
+      - NODE_ENV=development
+      - PORT=8000 # Ensure PORT is correctly passed
+    env_file:
+      - .env.prod
+    ports:
+      - "8000:8000"
+    command: ["npm", "run", "dev"]
+    profiles:
+      - dev
+
+  app-prod:
+    build:
+      context: . # Use the same context
+      dockerfile: ./Dockerfile # Explicit path to Dockerfile
+    environment:
+      - NODE_ENV=production
+      - PORT=8000 # Pass PORT in production
+    env_file:
+      - .env.prod
+    ports:
+      - "8000:8000"
+    command: ["node", "dist/server.js"]
+    profiles:
+      - prod
