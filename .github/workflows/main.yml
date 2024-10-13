@@ -1,0 +1,24 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-to-prod:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Node Setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install Caprover
+        run: npm install -g caprover
+
+      - name: Deploy
+        run: caprover deploy -h '${{ secrets.CAPROVER_ROOT_URL_DEV }}' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'master' -a '${{ secrets.CAPROVER_APP_DEV }}'
