@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import UserService from "../services/UserService";
 import { USER_MESSAGE } from "../utils/message";
+import { User } from "../models/Users";
 
 class UserController {
   public async getUser(
@@ -9,8 +10,8 @@ class UserController {
     next: NextFunction
   ): Promise<void> {
     try {
-      const data = await req.user;
-      const user = await UserService.getUserByFilter("id", data.id);
+      const data = await req.user as User;
+      const user = await UserService.getUserByFilter("id", data.id!);
 
       res.success(USER_MESSAGE.GET_USER, user);
     } catch (error) {
@@ -24,8 +25,8 @@ class UserController {
     next: NextFunction
   ): Promise<void> {
     try {
-      const data = await req.user;
-      const user = await UserService.updateProfile(data.id, req.body);
+      const data = await req.user as User;
+      const user = await UserService.updateProfile(data.id!, req.body);
 
       res.success(USER_MESSAGE.UPDATED_PROFILE, user);
     } catch (error) {
@@ -39,9 +40,9 @@ class UserController {
     next: NextFunction
   ): Promise<void> {
     try {
-      const data = await req.user;
+      const data = await req.user as User;
       const user = await UserService.updatePassword(
-        data.id,
+        data.id!,
         req.body.old_password,
         req.body.new_password
       );
